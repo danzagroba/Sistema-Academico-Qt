@@ -1,0 +1,29 @@
+
+#ifndef _UNIVERSIDADE_H_
+#define _UNIVERSIDADE_H_
+
+//#include "Lista.h"
+#include "Departamento.h"
+
+class Universidade
+{
+  private:
+      string nome;
+
+      //Lista<Departamento> ObjLDepartamentos;
+	  std::vector<Departamento*> ObjLDepartamentos;
+
+  public:
+      Universidade();
+      ~Universidade();
+
+      void setNome(char* n);
+      const string getNome();
+
+	  void setDepartamento(Departamento* d);
+      void listeDepartamentos();
+      void listeDepartamentos2();
+
+};
+
+#endif
