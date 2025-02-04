@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QMenuBar>
+#include "Principal.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -18,9 +19,13 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+protected:
+    Principal Sistema;
+
 private:
     Ui::MainWindow *ui;
     QMenuBar* menuBar;
+    int estado;
 
 private:
     void onNewActionTriggered();
@@ -30,6 +35,7 @@ private:
     void MostrarCadastroDepto();
     void MostrarCadastroDisc();
     void MostrarCadastroAluno();
+    void BotaoApertado();
 
 };
 #endif // MAINWINDOW_H
