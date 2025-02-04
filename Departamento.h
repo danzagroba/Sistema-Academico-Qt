@@ -27,7 +27,7 @@ class Departamento
 
 	 int getId();
 
-     void setNome(char* n);
+     void setNome(const char* n);
      const string getNome() const;
 
      void setUniversidade(Universidade* u);

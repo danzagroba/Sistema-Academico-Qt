@@ -15,7 +15,7 @@ const string Universidade::getNome()
    return nome;
 }
 
-void Universidade::setNome(char* n)
+void Universidade::setNome(const char* n)
 {
    //strcpy(nome, n);
    nome = n;

@@ -17,7 +17,7 @@ class Universidade
       Universidade();
       ~Universidade();
 
-      void setNome(char* n);
+      void setNome(const char* n);
       const string getNome();
 
 	  void setDepartamento(Departamento* d);

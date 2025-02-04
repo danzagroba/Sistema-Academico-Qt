@@ -24,7 +24,7 @@ int Departamento::getId()
 	return id;
 }
 
-void Departamento::setNome(char* n)
+void Departamento::setNome(const char* n)
 {
     //strcpy(nome, n);
 	nome = n;

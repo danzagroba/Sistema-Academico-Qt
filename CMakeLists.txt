@@ -23,9 +23,11 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(SistemaAcademicoQt
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
-        main.cpp mainwindow.cpp Disciplina.cpp Principal.cpp Universidade.cpp Departamento.cpp Pessoa.cpp Estagiario.cpp Professor.cpp ProjetoOOExemplo.cpp stdafx.cpp Aluno.cpp
+        main.cpp mainwindow.cpp Disciplina.cpp Principal.cpp Universidade.cpp Departamento.cpp Pessoa.cpp Estagiario.cpp Professor.cpp  stdafx.cpp Aluno.cpp
         Estagiario.h Principal.h Departamento.h Disciplina.h stdafx.h Universidade.h Pessoa.h Professor.h Aluno.h
         Estagiario.h Principal.h Departamento.h Disciplina.h stdafx.h Universidade.h Pessoa.h Professor.h Aluno.h
+        ListaAlunos.h
+        ListaAlunos.cpp ListaAlunos.h ListaDepartamentos.cpp ListaDepartamentos.h ListaDisciplinas.cpp ListaDisciplinas.h ListaUniversidades.cpp ListaUniversidades.h
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET SistemaAcademicoQt APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

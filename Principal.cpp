@@ -3,7 +3,8 @@
 // Modificado e expandido por: Daniel I. Zagroba
 
 #include "Principal.h"
-
+#include <QMessageBox>
+#include <string.h>
 #include <fstream>
 
 using std::cout;
@@ -27,25 +28,31 @@ Principal::~Principal() {
 // funcoes para cadastro de novos objetos
 void Principal::CadUniversidade(const char* univ)
 {
-    if(univ != NULL && std::strcmp(univ, "") != 0)
+    if(univ != NULL && strcmp(univ, "") != 0)
     {
         if(LUniversidades.localizar(univ) == NULL)
         {
-            Universidade* puniv = new Universidade(cont_idUniv++);
+            Universidade* puniv = new Universidade();
             puniv->setNome(univ);
             LUniversidades.incluaUniversidade(puniv);
-            ShowMessage("Universidade cadastrada!");
+            QMessageBox messageBox;
+            messageBox.information(0,"Sucesso","Universidade cadastrada!");
+            messageBox.setFixedSize(500,200);
         }
         else
         {
             // Mensagem de aviso
-            MessageDlg("Essa universidade já está cadastrada", mtWarning, TMsgDlgButtons() << mbOK, 0);
+            QMessageBox messageBox;
+            messageBox.warning(0,"Erro","Essa universidade já está cadastrada");
+            messageBox.setFixedSize(500,200);
         }
     }
     else
     {
         // Mensagem de aviso
-        MessageDlg("O campo da universidade está vazio", mtWarning, TMsgDlgButtons() << mbOK, 0);
+        QMessageBox messageBox;
+        messageBox.warning(0,"Erro","O campo da universidade está vazio");
+        messageBox.setFixedSize(500,200);
     }
 }
 
@@ -62,32 +69,42 @@ void Principal::CadDepartamento(const char* univ, const char* depart)
                 {
                     Departamento* pdepart = new Departamento(cont_idDepart++);
                     pdepart->setNome(depart);
-                    puniv->incluaDepartamento(pdepart);
+                    puniv->setDepartamento(pdepart);
                     LDepartamentos.incluaDepartamento(pdepart);
-                    ShowMessage("Departamento cadastrado!");
+                    QMessageBox messageBox;
+                    messageBox.information(0,"Sucesso","Departamento cadastrado!");
+                    messageBox.setFixedSize(500,200);
                 }
                 else
                 {
                     // Mensagem de aviso
-                    MessageDlg("Esse departamento já está cadastrado", mtWarning, TMsgDlgButtons() << mbOK, 0);
+                    QMessageBox messageBox;
+                    messageBox.warning(0,"Erro","Esse departamente já foi cadastrado");
+                    messageBox.setFixedSize(500,200);
                 }
             }
             else
             {
                 // Mensagem de aviso
-                MessageDlg("A universidade não está cadastrada", mtWarning, TMsgDlgButtons() << mbOK, 0);
+                QMessageBox messageBox;
+                messageBox.warning(0,"Erro","A universidade não está cadastrada");
+                messageBox.setFixedSize(500,200);
             }
         }
         else
         {
             // Mensagem de aviso
-            MessageDlg("O campo de departamento está vazio", mtWarning, TMsgDlgButtons() << mbOK, 0);
+            QMessageBox messageBox;
+            messageBox.warning(0,"Erro","O campo de departamento está vazio");
+            messageBox.setFixedSize(500,200);
         }
     }
     else
     {
         // Mensagem de aviso
-        MessageDlg("O campo da universidade está vazio", mtWarning, TMsgDlgButtons() << mbOK, 0);
+        QMessageBox messageBox;
+        messageBox.warning(0,"Erro","O campo da universidade está vazio");
+        messageBox.setFixedSize(500,200);
     }
 }
 
@@ -103,32 +120,42 @@ void Principal::CadDisciplina(const char* depart, const char* disci) {
                 {
                     Disciplina* pdisc = new Disciplina(cont_idDisc++);
                     pdisc->setNome(disci);
-                    pdepart->incluaDisciplina(pdisc);
+                    pdepart->setDisciplina(pdisc);
                     LDisciplinas.incluaDisciplina(pdisc);
-                    ShowMessage("Disciplina cadastrada!");
+                    QMessageBox messageBox;
+                    messageBox.information(0,"Sucesso","Disciplina cadastrada!");
+                    messageBox.setFixedSize(500,200);
                 }
                 else
                 {
                     // Mensagem de aviso
-                    MessageDlg("Essa disciplina já está cadastrada", mtWarning, TMsgDlgButtons() << mbOK, 0);
+                    QMessageBox messageBox;
+                    messageBox.warning(0,"Erro","Essa disciplina já está cadastrada");
+                    messageBox.setFixedSize(500,200);
                 }
             }
             else
             {
                 // Mensagem de aviso
-                MessageDlg("O departamento não está cadastrado", mtWarning, TMsgDlgButtons() << mbOK, 0);
+                QMessageBox messageBox;
+                messageBox.warning(0,"Erro","O departamento não está cadastrado");
+                messageBox.setFixedSize(500,200);
             }
         }
         else
         {
             // Mensagem de aviso
-            MessageDlg("O campo da disciplina está vazio", mtWarning, TMsgDlgButtons() << mbOK, 0);
+            QMessageBox messageBox;
+            messageBox.warning(0,"Erro","O campo da disciplina está vazio");
+            messageBox.setFixedSize(500,200);
         }
     }
     else
     {
         // Mensagem de aviso
-        MessageDlg("O campo de departamento está vazio", mtWarning, TMsgDlgButtons() << mbOK, 0);
+        QMessageBox messageBox;
+        messageBox.warning(0,"Erro","O campo de departamento está vazio");
+        messageBox.setFixedSize(500,200);
     }
 }
 
@@ -139,7 +166,7 @@ void Principal::CadAluno(const char* disci, const char* aluno, int ra)
     {
         if(aluno != NULL && std::strcmp(aluno, "") != 0)
         {
-            if(ra != NULL)
+            if(ra != 0)
             {
                 Disciplina* pdisc = LDisciplinas.localizar(disci);
                 if(pdisc != NULL)
@@ -149,47 +176,61 @@ void Principal::CadAluno(const char* disci, const char* aluno, int ra)
                         pal = new Aluno(cont_idAluno++);
                         pal->setNome(aluno);
                         pal->setRA(ra);
-                        pdisc->incluaAluno(pal);
+                        pdisc->setAluno(pal);
                         LAlunos.incluaAluno(pal);
-                        ShowMessage("Aluno cadastrado!");
+                        QMessageBox messageBox;
+                        messageBox.information(0,"Aluno","Disciplina cadastrado!");
+                        messageBox.setFixedSize(500,200);
                     }
                     else
                     {
                         // Mensagem de aviso
-                        MessageDlg("Já existe aluno com tal RA", mtWarning, TMsgDlgButtons() << mbOK, 0);
+                        QMessageBox messageBox;
+                        messageBox.warning(0,"Erro","Já existe aluno com tal RA");
+                        messageBox.setFixedSize(500,200);
                     }
                 }
                 else
                 {
                     // Mensagem de aviso
-                    MessageDlg("A disciplina não está cadastrada", mtWarning, TMsgDlgButtons() << mbOK, 0);
+                    QMessageBox messageBox;
+                    messageBox.warning(0,"Erro","A disciplina não está cadastrada");
+                    messageBox.setFixedSize(500,200);
                 }
             }
             else
             {
                 // Mensagem de aviso
-                MessageDlg("RA inválido", mtWarning, TMsgDlgButtons() << mbOK, 0);
+                QMessageBox messageBox;
+                messageBox.warning(0,"Erro","RA inválido");
+                messageBox.setFixedSize(500,200);
             }
         }
         else
         {
             // Mensagem de aviso
-            MessageDlg("O campo de aluno está vazio", mtWarning, TMsgDlgButtons() << mbOK, 0);
+            QMessageBox messageBox;
+            messageBox.warning(0,"Erro","O campo de aluno está vazio");
+            messageBox.setFixedSize(500,200);
         }
     }
     else
     {
         // Mensagem de aviso
-        MessageDlg("O campo da disciplina está vazio", mtWarning, TMsgDlgButtons() << mbOK, 0);
+        QMessageBox messageBox;
+        messageBox.warning(0,"Erro", "O campo da disciplina está vazio");
+        messageBox.setFixedSize(500,200);
     }
 }
 // funcoes para a gravacao de objetos em arquivo
-void Principal::GravarTudo() {
+/*void Principal::GravarTudo() {
     GravarUniversidades(false);
     GravarDepartamentos(false);
     GravarDisciplinas(false);
     GravarAlunos(false);
-    ShowMessage("Todo sistema acadêmico salvo!");
+    QMessageBox messageBox;
+    messageBox.warning(0,"Erro", "Todo sistema acadêmico salvo!");
+    messageBox.setFixedSize(500,200);
 }
 void Principal::GravarUniversidades(bool print) {
     std::ofstream out("universidades.dat", std::ios::out);
@@ -376,3 +417,4 @@ void Principal::RecuperarAlunos() {
         MessageDlg("Erro ao abrir o arquivo!", mtWarning, TMsgDlgButtons() << mbOK, 0);
     }
 }
+*/
