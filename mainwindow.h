@@ -26,6 +26,7 @@ private:
     Ui::MainWindow *ui;
     QMenuBar* menuBar;
     int estado;
+    int tipo;
 
 private:
     void onNewActionTriggered();
@@ -36,6 +37,7 @@ private:
     void MostrarCadastroDisc();
     void MostrarCadastroAluno();
     void BotaoApertado();
+    void ListarUniversidades();
 
 };
 #endif // MAINWINDOW_H

@@ -6,30 +6,34 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
     , estado(0)
+    , tipo(0)
 {
     ui->setupUi(this);
     ui->widget->setVisible(false);
+    ui->widget_2->setVisible(false);
+
     connect(ui->actionUniversidade, &QAction::triggered, this, &MainWindow::MostrarCadastroUniv);
     connect(ui->actionDepartamento, &QAction::triggered, this, &MainWindow::MostrarCadastroDepto);
     connect(ui->actionDisciplina, &QAction::triggered, this, &MainWindow::MostrarCadastroDisc);
     connect(ui->actionAluno, &QAction::triggered, this, &MainWindow::MostrarCadastroAluno);
     connect(ui->pushButton, &QPushButton::clicked, this, &MainWindow::BotaoApertado);
 
+    connect(ui->actionUniversidades, &QAction::triggered, this, &MainWindow::ListarUniversidades);
+
 }
 
 MainWindow::~MainWindow()
-{
+{\
     delete ui;
 }
 
 void MainWindow::MostrarCadastroUniv()
 {
-    estado = 1;
+    tipo = 1;
     ui->widget->setVisible(true);
-    ui->label->setVisible(true);
+    ui->widget_2->setVisible(false);
     ui->label_2->setVisible(false);
     ui->label_3->setVisible(false);
-    ui->textEdit->setVisible(true);
     ui->textEdit_2->setVisible(false);
     ui->textEdit_3->setVisible(false);
 
@@ -42,12 +46,11 @@ void MainWindow::MostrarCadastroUniv()
 
 void MainWindow::MostrarCadastroDepto()
 {
-    estado = 2;
+    tipo = 2;
     ui->widget->setVisible(true);
-    ui->label->setVisible(true);
+    ui->widget_2->setVisible(false);
     ui->label_2->setVisible(true);
     ui->label_3->setVisible(false);
-    ui->textEdit->setVisible(true);
     ui->textEdit_2->setVisible(true);
     ui->textEdit_3->setVisible(false);
 
@@ -61,12 +64,11 @@ void MainWindow::MostrarCadastroDepto()
 
 void MainWindow::MostrarCadastroDisc()
 {
-    estado = 3;
+    tipo = 3;
     ui->widget->setVisible(true);
-    ui->label->setVisible(true);
+    ui->widget_2->setVisible(false);
     ui->label_2->setVisible(true);
     ui->label_3->setVisible(false);
-    ui->textEdit->setVisible(true);
     ui->textEdit_2->setVisible(true);
     ui->textEdit_3->setVisible(false);
 
@@ -80,12 +82,11 @@ void MainWindow::MostrarCadastroDisc()
 
 void MainWindow::MostrarCadastroAluno()
 {
-    estado = 4;
+    tipo = 4;
     ui->widget->setVisible(true);
-    ui->label->setVisible(true);
+    ui->widget_2->setVisible(false);
     ui->label_2->setVisible(true);
     ui->label_3->setVisible(true);
-    ui->textEdit->setVisible(true);
     ui->textEdit_2->setVisible(true);
     ui->textEdit_3->setVisible(true);
 
@@ -99,19 +100,19 @@ void MainWindow::MostrarCadastroAluno()
 
 void MainWindow::BotaoApertado()
 {
-    if(estado == 1)
+    if(tipo == 1)
     {
         Sistema.CadUniversidade(ui->textEdit->toPlainText().toStdString().c_str());
         ui->textEdit->setHtml("");
-    } else if(estado == 2)
+    } else if(tipo == 2)
     {
         Sistema.CadDepartamento(ui->textEdit->toPlainText().toStdString().c_str(), ui->textEdit_2->toPlainText().toStdString().c_str());
         ui->textEdit_2->setHtml("");
-    }else if(estado == 3)
+    }else if(tipo == 3)
     {
         Sistema.CadDisciplina(ui->textEdit->toPlainText().toStdString().c_str(), ui->textEdit_2->toPlainText().toStdString().c_str());
         ui->textEdit_2->setHtml("");
-    }else if(estado == 4)
+    }else if(tipo == 4)
     {
         Sistema.CadAluno(
             ui->textEdit->toPlainText().toStdString().c_str(),
@@ -124,9 +125,19 @@ void MainWindow::BotaoApertado()
     }else
     {
         QMessageBox messageBox;
-        messageBox.warning(0,"Erro","Estado não encontrado");
+        messageBox.warning(0,"Erro","tipo não encontrado");
         messageBox.setFixedSize(500,200);
     }
+}
+
+void MainWindow::ListarUniversidades()
+{
+    ui->widget->setVisible(false);
+    ui->widget_2->setVisible(true);
+
+    ui->label_4->setText("Universidades");
+    ui->label_5->setText("Disciplinas");
+
 }
 
 void MainWindow::onNewActionTriggered() {

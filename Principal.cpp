@@ -43,7 +43,7 @@ void Principal::CadUniversidade(const char* univ)
         {
             // Mensagem de aviso
             QMessageBox messageBox;
-            messageBox.warning(0,"Erro","Essa universidade já está cadastrada");
+            messageBox.warning(0,"Erro","Essa universidade ja esta cadastrada");
             messageBox.setFixedSize(500,200);
         }
     }
@@ -51,7 +51,7 @@ void Principal::CadUniversidade(const char* univ)
     {
         // Mensagem de aviso
         QMessageBox messageBox;
-        messageBox.warning(0,"Erro","O campo da universidade está vazio");
+        messageBox.warning(0,"Erro","O campo da universidade esta vazio");
         messageBox.setFixedSize(500,200);
     }
 }
@@ -79,7 +79,7 @@ void Principal::CadDepartamento(const char* univ, const char* depart)
                 {
                     // Mensagem de aviso
                     QMessageBox messageBox;
-                    messageBox.warning(0,"Erro","Esse departamente já foi cadastrado");
+                    messageBox.warning(0,"Erro","Esse departamente ja foi cadastrado");
                     messageBox.setFixedSize(500,200);
                 }
             }
@@ -87,7 +87,7 @@ void Principal::CadDepartamento(const char* univ, const char* depart)
             {
                 // Mensagem de aviso
                 QMessageBox messageBox;
-                messageBox.warning(0,"Erro","A universidade não está cadastrada");
+                messageBox.warning(0,"Erro","A universidade nao esta cadastrada");
                 messageBox.setFixedSize(500,200);
             }
         }
@@ -95,7 +95,7 @@ void Principal::CadDepartamento(const char* univ, const char* depart)
         {
             // Mensagem de aviso
             QMessageBox messageBox;
-            messageBox.warning(0,"Erro","O campo de departamento está vazio");
+            messageBox.warning(0,"Erro","O campo de departamento esta vazio");
             messageBox.setFixedSize(500,200);
         }
     }
@@ -103,7 +103,7 @@ void Principal::CadDepartamento(const char* univ, const char* depart)
     {
         // Mensagem de aviso
         QMessageBox messageBox;
-        messageBox.warning(0,"Erro","O campo da universidade está vazio");
+        messageBox.warning(0,"Erro","O campo da universidade esta vazio");
         messageBox.setFixedSize(500,200);
     }
 }
@@ -130,7 +130,7 @@ void Principal::CadDisciplina(const char* depart, const char* disci) {
                 {
                     // Mensagem de aviso
                     QMessageBox messageBox;
-                    messageBox.warning(0,"Erro","Essa disciplina já está cadastrada");
+                    messageBox.warning(0,"Erro","Essa disciplina ja esta cadastrada");
                     messageBox.setFixedSize(500,200);
                 }
             }
@@ -138,7 +138,7 @@ void Principal::CadDisciplina(const char* depart, const char* disci) {
             {
                 // Mensagem de aviso
                 QMessageBox messageBox;
-                messageBox.warning(0,"Erro","O departamento não está cadastrado");
+                messageBox.warning(0,"Erro","O departamento nao esta cadastrado");
                 messageBox.setFixedSize(500,200);
             }
         }
@@ -146,7 +146,7 @@ void Principal::CadDisciplina(const char* depart, const char* disci) {
         {
             // Mensagem de aviso
             QMessageBox messageBox;
-            messageBox.warning(0,"Erro","O campo da disciplina está vazio");
+            messageBox.warning(0,"Erro","O campo da disciplina esta vazio");
             messageBox.setFixedSize(500,200);
         }
     }
@@ -154,7 +154,7 @@ void Principal::CadDisciplina(const char* depart, const char* disci) {
     {
         // Mensagem de aviso
         QMessageBox messageBox;
-        messageBox.warning(0,"Erro","O campo de departamento está vazio");
+        messageBox.warning(0,"Erro","O campo de departamento esta vazio");
         messageBox.setFixedSize(500,200);
     }
 }
@@ -186,7 +186,7 @@ void Principal::CadAluno(const char* disci, const char* aluno, int ra)
                     {
                         // Mensagem de aviso
                         QMessageBox messageBox;
-                        messageBox.warning(0,"Erro","Já existe aluno com tal RA");
+                        messageBox.warning(0,"Erro","Ja existe aluno com tal RA");
                         messageBox.setFixedSize(500,200);
                     }
                 }
@@ -194,7 +194,7 @@ void Principal::CadAluno(const char* disci, const char* aluno, int ra)
                 {
                     // Mensagem de aviso
                     QMessageBox messageBox;
-                    messageBox.warning(0,"Erro","A disciplina não está cadastrada");
+                    messageBox.warning(0,"Erro","A disciplina nao esta cadastrada");
                     messageBox.setFixedSize(500,200);
                 }
             }
@@ -202,7 +202,7 @@ void Principal::CadAluno(const char* disci, const char* aluno, int ra)
             {
                 // Mensagem de aviso
                 QMessageBox messageBox;
-                messageBox.warning(0,"Erro","RA inválido");
+                messageBox.warning(0,"Erro","RA invalido");
                 messageBox.setFixedSize(500,200);
             }
         }
@@ -210,7 +210,7 @@ void Principal::CadAluno(const char* disci, const char* aluno, int ra)
         {
             // Mensagem de aviso
             QMessageBox messageBox;
-            messageBox.warning(0,"Erro","O campo de aluno está vazio");
+            messageBox.warning(0,"Erro","O campo de aluno esta vazio");
             messageBox.setFixedSize(500,200);
         }
     }
@@ -218,7 +218,7 @@ void Principal::CadAluno(const char* disci, const char* aluno, int ra)
     {
         // Mensagem de aviso
         QMessageBox messageBox;
-        messageBox.warning(0,"Erro", "O campo da disciplina está vazio");
+        messageBox.warning(0,"Erro", "O campo da disciplina esta vazio");
         messageBox.setFixedSize(500,200);
     }
 }
