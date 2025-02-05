@@ -19,6 +19,13 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->pushButton, &QPushButton::clicked, this, &MainWindow::BotaoApertado);
 
     connect(ui->actionUniversidades, &QAction::triggered, this, &MainWindow::ListarUniversidades);
+    connect(ui->actionDepartamentos, &QAction::triggered, this, &MainWindow::ListarDepartamentos);
+    connect(ui->actionDisciplinas, &QAction::triggered, this, &MainWindow::ListarDisciplinas);
+    connect(ui->actionAlunos, &QAction::triggered, this, &MainWindow::ListarAlunos);
+    connect(ui->actionTudo, &QAction::triggered, this, &MainWindow::ListarTudo);
+
+
+
 
 }
 
@@ -135,9 +142,57 @@ void MainWindow::ListarUniversidades()
     ui->widget->setVisible(false);
     ui->widget_2->setVisible(true);
 
+    ui->listWidget_2->setVisible(true);
+
     ui->label_4->setText("Universidades");
     ui->label_5->setText("Disciplinas");
 
+}
+
+void MainWindow::ListarDepartamentos()
+{
+    ui->widget->setVisible(false);
+    ui->widget_2->setVisible(true);
+
+    ui->listWidget_2->setVisible(true);
+
+    ui->label_4->setText("Departamentos");
+    ui->label_5->setText("Disciplinas");
+
+}
+
+void MainWindow::ListarDisciplinas()
+{
+    ui->widget->setVisible(false);
+    ui->widget_2->setVisible(true);
+
+    ui->listWidget_2->setVisible(true);
+
+    ui->label_4->setText("Disciplinas");
+    ui->label_5->setText("Alunos");
+
+}
+
+void MainWindow::ListarAlunos()
+{
+    ui->widget->setVisible(false);
+    ui->widget_2->setVisible(true);
+
+    ui->listWidget_2->setVisible(false);
+
+    ui->label_4->setText("Alunos");
+    ui->label_5->setText("");
+}
+
+void MainWindow::ListarTudo()
+{
+    ui->widget->setVisible(false);
+    ui->widget_2->setVisible(true);
+
+    ui->listWidget_2->setVisible(false);
+
+    ui->label_4->setText("Tudo");
+    ui->label_5->setText("");
 }
 
 void MainWindow::onNewActionTriggered() {

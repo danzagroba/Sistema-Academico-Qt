@@ -38,6 +38,10 @@ private:
     void MostrarCadastroAluno();
     void BotaoApertado();
     void ListarUniversidades();
+    void ListarDepartamentos();
+    void ListarDisciplinas();
+    void ListarAlunos();
+    void ListarTudo();
 
 };
 #endif // MAINWINDOW_H
