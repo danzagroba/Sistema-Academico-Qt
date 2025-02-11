@@ -27,11 +27,16 @@ private:
     QMenuBar* menuBar;
     int estado;
     int tipo;
+    bool caixaAberta;
+
+protected:
+    bool eventFilter(QObject* obj, QEvent* event) override;
 
 private:
-    void onNewActionTriggered();
+    /* onNewActionTriggered();
     void onOptionsActionTriggered();
-    void onShowActionTriggered();
+    void onShowActionTriggered();*/
+
     void MostrarCadastroUniv();
     void MostrarCadastroDepto();
     void MostrarCadastroDisc();

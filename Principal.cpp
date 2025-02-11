@@ -222,6 +222,8 @@ void Principal::CadAluno(const char* disci, const char* aluno, int ra)
         messageBox.setFixedSize(500,200);
     }
 }
+
+
 // funcoes para a gravacao de objetos em arquivo
 /*void Principal::GravarTudo() {
     GravarUniversidades(false);

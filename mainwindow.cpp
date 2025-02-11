@@ -1,12 +1,15 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 #include <QMessageBox>
+#include <QEvent>
+#include <QKeyEvent>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
     , estado(0)
     , tipo(0)
+    , caixaAberta(false)
 {
     ui->setupUi(this);
     ui->widget->setVisible(false);
@@ -24,13 +27,36 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionAlunos, &QAction::triggered, this, &MainWindow::ListarAlunos);
     connect(ui->actionTudo, &QAction::triggered, this, &MainWindow::ListarTudo);
 
-
+    qApp->installEventFilter(this);
 
 
 }
 
+
+bool MainWindow::eventFilter(QObject* obj, QEvent* event) {
+    if (event->type() == QEvent::KeyPress) {
+        QKeyEvent* keyEvent = static_cast<QKeyEvent*>(event);
+        if (keyEvent->key() == Qt::Key_Return || keyEvent->key() == Qt::Key_Enter) {
+            if(!caixaAberta) {
+                BotaoApertado();
+                caixaAberta = true;
+            }
+            if (caixaAberta) {
+                foreach (QWidget *widget, QApplication::topLevelWidgets()) {
+                    if (QMessageBox *mbox = qobject_cast<QMessageBox*>(widget)) {
+                        mbox->close();
+                    }
+                }
+                caixaAberta = false;
+            }
+            return true;
+        }
+    }
+    return QMainWindow::eventFilter(obj, event);
+}
+
 MainWindow::~MainWindow()
-{\
+{
     delete ui;
 }
 
@@ -49,6 +75,7 @@ void MainWindow::MostrarCadastroUniv()
     ui->textEdit->setHtml("");
     ui->textEdit_2->setHtml("");
     ui->textEdit_3->setHtml("");
+
 }
 
 void MainWindow::MostrarCadastroDepto()
@@ -109,18 +136,22 @@ void MainWindow::BotaoApertado()
 {
     if(tipo == 1)
     {
+        caixaAberta = true;
         Sistema.CadUniversidade(ui->textEdit->toPlainText().toStdString().c_str());
         ui->textEdit->setHtml("");
     } else if(tipo == 2)
     {
+        caixaAberta = true;
         Sistema.CadDepartamento(ui->textEdit->toPlainText().toStdString().c_str(), ui->textEdit_2->toPlainText().toStdString().c_str());
         ui->textEdit_2->setHtml("");
     }else if(tipo == 3)
     {
+        caixaAberta = true;
         Sistema.CadDisciplina(ui->textEdit->toPlainText().toStdString().c_str(), ui->textEdit_2->toPlainText().toStdString().c_str());
         ui->textEdit_2->setHtml("");
     }else if(tipo == 4)
     {
+        caixaAberta = true;
         Sistema.CadAluno(
             ui->textEdit->toPlainText().toStdString().c_str(),
             ui->textEdit_2->toPlainText().toStdString().c_str(),
@@ -128,6 +159,11 @@ void MainWindow::BotaoApertado()
 
         ui->textEdit_2->setHtml("");
         ui->textEdit_3->setHtml("");
+        caixaAberta = true;
+
+    }else if(tipo == 0)
+    {
+        caixaAberta = 0;
 
     }else
     {
@@ -139,18 +175,42 @@ void MainWindow::BotaoApertado()
 
 void MainWindow::ListarUniversidades()
 {
+    tipo = 0;
+    ui->listWidget->clear();
+
+    std::list<Universidade*>::iterator IteradorLUniversidades = Sistema.LUniversidades.getBegin();
+    while (IteradorLUniversidades!= Sistema.LUniversidades.getEnd())
+    {
+        QString aux = QString::fromStdString((*IteradorLUniversidades)->getNome());
+
+        ui->listWidget->addItem(aux);
+        IteradorLUniversidades++;
+    }
+
     ui->widget->setVisible(false);
     ui->widget_2->setVisible(true);
 
     ui->listWidget_2->setVisible(true);
 
     ui->label_4->setText("Universidades");
-    ui->label_5->setText("Disciplinas");
+    ui->label_5->setText("Departamentos");
 
 }
 
 void MainWindow::ListarDepartamentos()
 {
+    tipo = 0;
+    ui->listWidget->clear();
+
+    std::list<Departamento*>::iterator IteradorLDepartamentos = Sistema.LDepartamentos.getBegin();
+    while (IteradorLDepartamentos!= Sistema.LDepartamentos.getEnd())
+    {
+        QString aux = QString::fromStdString((*IteradorLDepartamentos)->getNome());
+
+        ui->listWidget->addItem(aux);
+        IteradorLDepartamentos++;
+    }
+
     ui->widget->setVisible(false);
     ui->widget_2->setVisible(true);
 
@@ -163,6 +223,18 @@ void MainWindow::ListarDepartamentos()
 
 void MainWindow::ListarDisciplinas()
 {
+    tipo = 0;
+    ui->listWidget->clear();
+
+    std::list<Disciplina*>::iterator IteradorLDisciplinas = Sistema.LDisciplinas.getBegin();
+    while (IteradorLDisciplinas!= Sistema.LDisciplinas.getEnd())
+    {
+        QString aux = QString::fromStdString((*IteradorLDisciplinas)->getNome());
+
+        ui->listWidget->addItem(aux);
+        IteradorLDisciplinas++;
+    }
+
     ui->widget->setVisible(false);
     ui->widget_2->setVisible(true);
 
@@ -175,6 +247,18 @@ void MainWindow::ListarDisciplinas()
 
 void MainWindow::ListarAlunos()
 {
+    tipo = 0;
+    ui->listWidget->clear();
+
+    std::list<Aluno*>::iterator IteradorLAlunos = Sistema.LAlunos.getBegin();
+    while (IteradorLAlunos!= Sistema.LAlunos.getEnd())
+    {
+        QString aux = QString::fromStdString((*IteradorLAlunos)->getNome());
+
+        ui->listWidget->addItem(aux);
+        IteradorLAlunos++;
+    }
+
     ui->widget->setVisible(false);
     ui->widget_2->setVisible(true);
 
@@ -186,6 +270,7 @@ void MainWindow::ListarAlunos()
 
 void MainWindow::ListarTudo()
 {
+    tipo = 0;
     ui->widget->setVisible(false);
     ui->widget_2->setVisible(true);
 
@@ -195,6 +280,17 @@ void MainWindow::ListarTudo()
     ui->label_5->setText("");
 }
 
+
+
+/*void MainWindow::listaTudo()
+{
+    listaUniv();
+    listaDept();
+    listaDisc();
+    listaAlun();
+}
+
+
 void MainWindow::onNewActionTriggered() {
     //stackedWidget->setCurrentIndex(0);
 }
@@ -203,4 +299,4 @@ void MainWindow::onOptionsActionTriggered() {
 }
 void MainWindow::onShowActionTriggered() {
     //stackedWidget->setCurrentIndex(1);
-}
+}*/
