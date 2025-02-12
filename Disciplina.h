@@ -33,7 +33,9 @@ private:
 
     void setAluno(Aluno* a);
     void listeAlunos();
-    void listeAlunos2();
+
+    vector<Aluno*>::iterator getAlunosBegin();
+    vector<Aluno*>::iterator getAlunosEnd();
 };
 
 #endif

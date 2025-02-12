@@ -70,15 +70,12 @@ void Disciplina::listeAlunos()
 	}
 }
 
-void Disciplina::listeAlunos2()
+vector<Aluno*>::iterator Disciplina::getAlunosBegin()
 {
-    //ObjLAlunos.listeAlunos2();
-	int tam = ObjLAlunos.size();
+    return ObjLAlunos.begin();
+}
 
-	for (int i = 0; i < tam; i++)
-	{
-		cout << (ObjLAlunos[i])->getNome() << endl;
-	}
-
-
+vector<Aluno*>::iterator Disciplina::getAlunosEnd()
+{
+    return ObjLAlunos.end();
 }

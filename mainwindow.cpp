@@ -310,7 +310,14 @@ void MainWindow::SegundaLista(QListWidgetItem *item)
 
     } else if(tipo == 7)
     {
+        std::vector<Aluno*>::iterator IteradorLAlunos = Sistema.LDisciplinas.localizar(nomec)->getAlunosBegin();
+        while (IteradorLAlunos!= Sistema.LDisciplinas.localizar(nomec)->getAlunosEnd())
+        {
+            QString aux = QString::fromStdString((*IteradorLAlunos)->getNome());
 
+            ui->listWidget_2->addItem(aux);
+            IteradorLAlunos++;
+        }
     }
 }
 
