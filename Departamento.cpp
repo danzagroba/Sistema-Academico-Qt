@@ -68,8 +68,13 @@ void Departamento::listeDisciplinas ( )
 	}
 }
 
-void Departamento::listeDisciplinas2 ( )
+vector<Disciplina*>::iterator Departamento::getDisciplinasBegin()
 {
-    //ObjLDisciplinas->listeDisciplinas2();
+    return pObjLDisciplinas->begin();
+}
+
+vector<Disciplina*>::iterator Departamento::getDisciplinasEnd()
+{
+    return pObjLDisciplinas->end();
 }
 

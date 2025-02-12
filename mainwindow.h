@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QMenuBar>
+#include <QListWidget>
 #include "Principal.h"
 
 QT_BEGIN_NAMESPACE
@@ -47,6 +48,8 @@ private:
     void ListarDisciplinas();
     void ListarAlunos();
     void ListarTudo();
+
+    void SegundaLista(QListWidgetItem *item);
 
 };
 #endif // MAINWINDOW_H

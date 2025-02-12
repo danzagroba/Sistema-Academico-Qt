@@ -35,7 +35,9 @@ class Departamento
 
      void setDisciplina ( Disciplina* d );
      void listeDisciplinas();
-     void listeDisciplinas2();
+
+     vector<Disciplina*>::iterator getDisciplinasBegin();
+     vector<Disciplina*>::iterator getDisciplinasEnd();
 };
 
 #endif

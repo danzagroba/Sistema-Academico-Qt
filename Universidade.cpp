@@ -40,7 +40,13 @@ void Universidade::listeDepartamentos()
 	}
 }
 
-void Universidade::listeDepartamentos2()
+vector<Departamento*>::iterator Universidade::getDepartamentosBegin()
 {
-    //ObjLDepartamentos.listeDepartamentos2();
+    return ObjLDepartamentos.begin();
 }
+
+vector<Departamento*>::iterator Universidade::getDepartamentosEnd()
+{
+    return ObjLDepartamentos.end();
+}
+

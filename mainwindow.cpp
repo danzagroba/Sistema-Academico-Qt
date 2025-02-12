@@ -27,6 +27,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionAlunos, &QAction::triggered, this, &MainWindow::ListarAlunos);
     connect(ui->actionTudo, &QAction::triggered, this, &MainWindow::ListarTudo);
 
+    connect(ui->listWidget, &QListWidget::itemClicked, this, &MainWindow::SegundaLista);
+
     qApp->installEventFilter(this);
 
 
@@ -175,7 +177,7 @@ void MainWindow::BotaoApertado()
 
 void MainWindow::ListarUniversidades()
 {
-    tipo = 0;
+    tipo = 5;
     ui->listWidget->clear();
 
     std::list<Universidade*>::iterator IteradorLUniversidades = Sistema.LUniversidades.getBegin();
@@ -199,7 +201,7 @@ void MainWindow::ListarUniversidades()
 
 void MainWindow::ListarDepartamentos()
 {
-    tipo = 0;
+    tipo = 6;
     ui->listWidget->clear();
 
     std::list<Departamento*>::iterator IteradorLDepartamentos = Sistema.LDepartamentos.getBegin();
@@ -223,7 +225,7 @@ void MainWindow::ListarDepartamentos()
 
 void MainWindow::ListarDisciplinas()
 {
-    tipo = 0;
+    tipo = 7;
     ui->listWidget->clear();
 
     std::list<Disciplina*>::iterator IteradorLDisciplinas = Sistema.LDisciplinas.getBegin();
@@ -247,7 +249,7 @@ void MainWindow::ListarDisciplinas()
 
 void MainWindow::ListarAlunos()
 {
-    tipo = 0;
+    tipo = 8;
     ui->listWidget->clear();
 
     std::list<Aluno*>::iterator IteradorLAlunos = Sistema.LAlunos.getBegin();
@@ -270,7 +272,7 @@ void MainWindow::ListarAlunos()
 
 void MainWindow::ListarTudo()
 {
-    tipo = 0;
+    tipo = 9;
     ui->widget->setVisible(false);
     ui->widget_2->setVisible(true);
 
@@ -280,7 +282,37 @@ void MainWindow::ListarTudo()
     ui->label_5->setText("");
 }
 
+void MainWindow::SegundaLista(QListWidgetItem *item)
+{
+    ui->listWidget_2->clear();
+    string nome = item->text().toStdString();
+    const char* nomec = nome.c_str();
+    if(tipo == 5)
+    {
+        std::vector<Departamento*>::iterator IteradorLDepartamentos = Sistema.LUniversidades.localizar(nomec)->getDepartamentosBegin();
+        while (IteradorLDepartamentos!= Sistema.LUniversidades.localizar(nomec)->getDepartamentosEnd())
+        {
+            QString aux = QString::fromStdString((*IteradorLDepartamentos)->getNome());
 
+            ui->listWidget_2->addItem(aux);
+            IteradorLDepartamentos++;
+        }
+    } else if(tipo == 6)
+    {
+        std::vector<Disciplina*>::iterator IteradorLDisciplinas = Sistema.LDepartamentos.localizar(nomec)->getDisciplinasBegin();
+        while (IteradorLDisciplinas!= Sistema.LDepartamentos.localizar(nomec)->getDisciplinasEnd())
+        {
+            QString aux = QString::fromStdString((*IteradorLDisciplinas)->getNome());
+
+            ui->listWidget_2->addItem(aux);
+            IteradorLDisciplinas++;
+        }
+
+    } else if(tipo == 7)
+    {
+
+    }
+}
 
 /*void MainWindow::listaTudo()
 {

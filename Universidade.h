@@ -22,7 +22,9 @@ class Universidade
 
 	  void setDepartamento(Departamento* d);
       void listeDepartamentos();
-      void listeDepartamentos2();
+
+      vector<Departamento*>::iterator getDepartamentosBegin();
+      vector<Departamento*>::iterator getDepartamentosEnd();
 
 };
 
