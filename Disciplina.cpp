@@ -39,11 +39,7 @@ const string Disciplina::getNome()
 
 void Disciplina::setDepartamento(Departamento* d)
 {
-  // Cada vez que um Departamento é associado a uma Disciplina,
-  // esta Disciplina passa a fazer parte da lista de disciplina 
-  // do Departamento, por meio do comando abaixo.
   DeptoAssociado = d;
-  DeptoAssociado->setDisciplina ( this );
 }
 
 Departamento* Disciplina::getDepartamento ( )

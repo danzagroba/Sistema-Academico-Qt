@@ -136,6 +136,8 @@ void MainWindow::MostrarCadastroAluno()
 
 void MainWindow::BotaoApertado()
 {
+    ui->listWidget->clear();
+    ui->listWidget_2->clear();
     if(tipo == 1)
     {
         caixaAberta = true;
@@ -179,7 +181,6 @@ void MainWindow::ListarUniversidades()
 {
     tipo = 5;
     ui->listWidget->clear();
-
     std::list<Universidade*>::iterator IteradorLUniversidades = Sistema.LUniversidades.getBegin();
     while (IteradorLUniversidades!= Sistema.LUniversidades.getEnd())
     {
@@ -203,7 +204,6 @@ void MainWindow::ListarDepartamentos()
 {
     tipo = 6;
     ui->listWidget->clear();
-
     std::list<Departamento*>::iterator IteradorLDepartamentos = Sistema.LDepartamentos.getBegin();
     while (IteradorLDepartamentos!= Sistema.LDepartamentos.getEnd())
     {
@@ -227,7 +227,6 @@ void MainWindow::ListarDisciplinas()
 {
     tipo = 7;
     ui->listWidget->clear();
-
     std::list<Disciplina*>::iterator IteradorLDisciplinas = Sistema.LDisciplinas.getBegin();
     while (IteradorLDisciplinas!= Sistema.LDisciplinas.getEnd())
     {
@@ -251,7 +250,6 @@ void MainWindow::ListarAlunos()
 {
     tipo = 8;
     ui->listWidget->clear();
-
     std::list<Aluno*>::iterator IteradorLAlunos = Sistema.LAlunos.getBegin();
     while (IteradorLAlunos!= Sistema.LAlunos.getEnd())
     {
@@ -273,6 +271,50 @@ void MainWindow::ListarAlunos()
 void MainWindow::ListarTudo()
 {
     tipo = 9;
+    ui->listWidget->clear();
+    std::list<Universidade*>::iterator IteradorLUniversidades = Sistema.LUniversidades.getBegin();
+    while (IteradorLUniversidades!= Sistema.LUniversidades.getEnd())
+    {
+        QString aux = QString::fromStdString((*IteradorLUniversidades)->getNome());
+
+        ui->listWidget->addItem(aux);
+        IteradorLUniversidades++;
+    }
+
+    std::list<Departamento*>::iterator IteradorLDepartamentos = Sistema.LDepartamentos.getBegin();
+    while (IteradorLDepartamentos!= Sistema.LDepartamentos.getEnd())
+    {
+        if((*IteradorLDepartamentos)->getUniversidade() != NULL)
+        {
+            QString aux = QString::fromStdString((*IteradorLDepartamentos)->getNome()) + " da " + QString::fromStdString((*IteradorLDepartamentos)->getUniversidade()->getNome());
+
+            ui->listWidget->addItem(aux);
+        }
+        IteradorLDepartamentos++;
+    }
+
+    std::list<Disciplina*>::iterator IteradorLDisciplinas = Sistema.LDisciplinas.getBegin();
+    while (IteradorLDisciplinas!= Sistema.LDisciplinas.getEnd())
+    {
+        if((*IteradorLDisciplinas)->getDepartamento() != NULL)
+        {
+            QString aux = QString::fromStdString((*IteradorLDisciplinas)->getNome()) + " do Departamento " + QString::fromStdString((*IteradorLDisciplinas)->getDepartamento()->getNome());
+
+            ui->listWidget->addItem(aux);
+        }
+        IteradorLDisciplinas++;
+    }
+
+    std::list<Aluno*>::iterator IteradorLAlunos = Sistema.LAlunos.getBegin();
+    while (IteradorLAlunos!= Sistema.LAlunos.getEnd())
+    {
+        QString aux = QString::fromStdString((*IteradorLAlunos)->getNome());
+
+        ui->listWidget->addItem(aux);
+        IteradorLAlunos++;
+    }
+
+
     ui->widget->setVisible(false);
     ui->widget_2->setVisible(true);
 
@@ -321,21 +363,5 @@ void MainWindow::SegundaLista(QListWidgetItem *item)
     }
 }
 
-/*void MainWindow::listaTudo()
-{
-    listaUniv();
-    listaDept();
-    listaDisc();
-    listaAlun();
-}
 
 
-void MainWindow::onNewActionTriggered() {
-    //stackedWidget->setCurrentIndex(0);
-}
-void MainWindow::onOptionsActionTriggered() {
-    //stackedWidget->setCurrentIndex(1);
-}
-void MainWindow::onShowActionTriggered() {
-    //stackedWidget->setCurrentIndex(1);
-}*/

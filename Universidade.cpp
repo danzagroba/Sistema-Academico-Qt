@@ -27,6 +27,7 @@ void Universidade::setDepartamento (Departamento* d)
 {
     //ObjLDepartamentos.setInfo(d);
 	ObjLDepartamentos.push_back(d);
+    d->setUniversidade(this);
 }
 
 void Universidade::listeDepartamentos()

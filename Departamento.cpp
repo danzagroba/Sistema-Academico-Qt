@@ -52,6 +52,7 @@ void Departamento::setDisciplina ( Disciplina* d )
 {  
 	//ObjLDisciplinas->setInfo (d);
 	pObjLDisciplinas->push_back(d);
+    d->setDepartamento(this);
 }
 
 void Departamento::listeDisciplinas ( )
