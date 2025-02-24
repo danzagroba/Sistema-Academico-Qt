@@ -1,8 +1,9 @@
 #include "stdafx.h"
 #include "Universidade.h"
 
-Universidade::Universidade():
-ObjLDepartamentos()
+Universidade::Universidade(int idd):
+ObjLDepartamentos(),
+    id(idd)
 {
 }
 
@@ -51,3 +52,7 @@ vector<Departamento*>::iterator Universidade::getDepartamentosEnd()
     return ObjLDepartamentos.end();
 }
 
+int Universidade::getId()
+{
+    return id;
+}

@@ -9,7 +9,7 @@ class Aluno : public Pessoa
  private:
     int				id;
     int				RA;
-    //char			nome[150];
+    Disciplina* pDiscAssociada;
     Departamento*	DeptoAssociado;
 
 public:
@@ -21,6 +21,9 @@ public:
     void setRA(int ra);
     int getRA();
 
+    void setDisciplina(Disciplina* pd);
+    Disciplina* getDisciplina();
+
     void setDepartamento ( Departamento* d );
     Departamento* getDepartamento ( );
 	
@@ -28,25 +31,5 @@ public:
 	int getId();
 };
 	
-/*class Int
-{
-	int valor;
-public:
-	int operator ++(int ghost)
-	{
-		valor++;
-		return valor;
-	}
-
-	operator int()
-	{
-		return valor;
-	}
-	Int(int v) 
-	{ 
-		valor = v; 
-	}
-
-};*/
 
 #endif

@@ -9,12 +9,12 @@ class Universidade
 {
   private:
       string nome;
-
+      int id;
       //Lista<Departamento> ObjLDepartamentos;
 	  std::vector<Departamento*> ObjLDepartamentos;
 
   public:
-      Universidade();
+      Universidade(int idd);
       ~Universidade();
 
       void setNome(const char* n);
@@ -25,6 +25,7 @@ class Universidade
 
       vector<Departamento*>::iterator getDepartamentosBegin();
       vector<Departamento*>::iterator getDepartamentosEnd();
+      int getId();
 
 };
 

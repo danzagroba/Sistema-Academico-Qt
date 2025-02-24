@@ -51,5 +51,9 @@ private:
 
     void SegundaLista(QListWidgetItem *item);
 
+    void SalvarTudo();
+
+    void RecuperarTudo();
+
 };
 #endif // MAINWINDOW_H

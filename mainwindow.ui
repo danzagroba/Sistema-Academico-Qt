@@ -215,13 +215,13 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <property name="title">
      <string>Salvar</string>
     </property>
-    <addaction name="actionTudo_2"/>
+    <addaction name="actionSalvar"/>
    </widget>
    <widget class="QMenu" name="menuRecuperar">
     <property name="title">
      <string>Recuperar</string>
     </property>
-    <addaction name="actionTudo_3"/>
+    <addaction name="actionRecuperar"/>
    </widget>
    <addaction name="menuCadastrar"/>
    <addaction name="menuListar"/>
@@ -274,12 +274,12 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <string>Alunos</string>
    </property>
   </action>
-  <action name="actionTudo_2">
+  <action name="actionSalvar">
    <property name="text">
     <string>Tudo</string>
    </property>
   </action>
-  <action name="actionTudo_3">
+  <action name="actionRecuperar">
    <property name="text">
     <string>Tudo</string>
    </property>

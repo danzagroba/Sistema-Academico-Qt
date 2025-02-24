@@ -14,4 +14,5 @@ public:
 	Universidade* localizar(const char* univ);
 	std::list<Universidade*>::iterator getBegin();
 	std::list<Universidade*>::iterator getEnd();
+    bool isEmpty();
 };

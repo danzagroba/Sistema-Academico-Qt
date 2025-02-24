@@ -5,8 +5,9 @@
 #include "Principal.h"
 #include <QMessageBox>
 #include <string.h>
+#include <iostream>
 #include <fstream>
-
+#include <filesystem>
 using std::cout;
 using std::endl;
 using std::cin;
@@ -32,7 +33,7 @@ void Principal::CadUniversidade(const char* univ)
     {
         if(LUniversidades.localizar(univ) == NULL)
         {
-            Universidade* puniv = new Universidade();
+            Universidade* puniv = new Universidade(cont_idUniv++);
             puniv->setNome(univ);
             LUniversidades.incluaUniversidade(puniv);
             QMessageBox messageBox;
@@ -225,40 +226,34 @@ void Principal::CadAluno(const char* disci, const char* aluno, int ra)
 
 
 // funcoes para a gravacao de objetos em arquivo
-/*void Principal::GravarTudo() {
-    GravarUniversidades(false);
-    GravarDepartamentos(false);
-    GravarDisciplinas(false);
-    GravarAlunos(false);
+void Principal::GravarTudo() {
+    GravarUniversidades();
+    GravarDepartamentos();
+    GravarDisciplinas();
+    GravarAlunos();
     QMessageBox messageBox;
-    messageBox.warning(0,"Erro", "Todo sistema acadêmico salvo!");
+    messageBox.information(0,"Sucesso", "Todo sistema acadêmico salvo!");
     messageBox.setFixedSize(500,200);
 }
-void Principal::GravarUniversidades(bool print) {
+void Principal::GravarUniversidades() {
+
     std::ofstream out("universidades.dat", std::ios::out);
     if (out.is_open()) {
         IteradorLUniversidades = LUniversidades.getBegin();
 
-        while (IteradorLUniversidades!= LUniversidades.getEnd())
-        {
-            std::string str(((*(IteradorLUniversidades))->getNome() + std::string(" ")));
-            out << str << (*(IteradorLUniversidades))->getId() << endl;
+        while (IteradorLUniversidades != LUniversidades.getEnd()) {
+            std::string nome = ((*IteradorLUniversidades))->getNome();
+            int id = ((*IteradorLUniversidades))->getId();
+            out << nome << " " << id << "\n";
             IteradorLUniversidades++;
         }
 
         out.close();
-
-        if(print)
-        {
-            ShowMessage("Universidades gravadas!");
-        }
-    }
-    else
-    {
-        MessageDlg("Erro ao abrir o arquivo!", mtWarning, TMsgDlgButtons() << mbOK, 0);
+    } else {
+        QMessageBox::warning(0, "Erro", "Erro ao abrir arquivo");
     }
 }
-void Principal::GravarDepartamentos(bool print) {
+void Principal::GravarDepartamentos() {
     std::ofstream out("departamentos.dat", std::ios::out);
 
     if (out.is_open()) {
@@ -271,18 +266,13 @@ void Principal::GravarDepartamentos(bool print) {
         }
 
         out.close();
-
-        if(print)
-        {
-            ShowMessage("Departamentos gravados!");
-        }
     }
     else
     {
-        MessageDlg("Erro ao abrir o arquivo!", mtWarning, TMsgDlgButtons() << mbOK, 0);
+        QMessageBox::warning(0, "Erro", "Erro ao abrir arquivo");
     }
 }
-void Principal::GravarDisciplinas(bool print) {
+void Principal::GravarDisciplinas() {
     std::ofstream out("disciplinas.dat", std::ios::out);
     if (out.is_open()) {
         list<Disciplina*>::iterator IteradorLDisciplinas = LDisciplinas.getBegin();
@@ -293,17 +283,13 @@ void Principal::GravarDisciplinas(bool print) {
             IteradorLDisciplinas++;
         }
         out.close();
-        if(print)
-        {
-            ShowMessage("Disciplinas gravadas!");
-        }
     }
     else
     {
-        MessageDlg("Erro ao abrir o arquivo!", mtWarning, TMsgDlgButtons() << mbOK, 0);
+        QMessageBox::warning(0, "Erro", "Erro ao abrir arquivo");
     }
 }
-void Principal::GravarAlunos(bool print) {
+void Principal::GravarAlunos() {
     std::ofstream out("alunos.dat", std::ios::out);
     if (out) {
         IteradorLAlunos = LAlunos.getBegin();
@@ -315,23 +301,19 @@ void Principal::GravarAlunos(bool print) {
         }
 
         out.close();
-        if(print)
-        {
-            ShowMessage("Alunos gravados!");
-        }
     }
     else
     {
-        MessageDlg("Erro ao abrir o arquivo!", mtWarning, TMsgDlgButtons() << mbOK, 0);
+        QMessageBox::warning(0, "Erro", "Erro ao abrir arquivo");
     }
 }
-// auncoes para a recuperacao de objetos em arquivo
+// funcoes para a recuperacao de objetos em arquivo
 void Principal::RecuperarTudo() {
     RecuperarUniversidades();
     RecuperarDepartamentos();
     RecuperarDisciplinas();
     RecuperarAlunos();
-    ShowMessage("Sistema acadêmico recuperado!");
+    QMessageBox::information(0,"Sucesso", "Todo sistema academico recuperado!");
 
 }
 void Principal::RecuperarUniversidades() {
@@ -349,7 +331,7 @@ void Principal::RecuperarUniversidades() {
     }
     else
     {
-        MessageDlg("Erro ao abrir o arquivo!", mtWarning, TMsgDlgButtons() << mbOK, 0);
+        QMessageBox::warning(0, "Erro", "Erro ao abrir arquivo");
     }
 }
 void Principal::RecuperarDepartamentos() {
@@ -362,7 +344,7 @@ void Principal::RecuperarDepartamentos() {
             if (puniv) {
                 Departamento* pdep = new Departamento(id);
                 pdep->setNome(nome);
-                puniv->incluaDepartamento(pdep);
+                puniv->setDepartamento(pdep);
                 LDepartamentos.incluaDepartamento(pdep);
                 cont_idDepart++;
             }
@@ -371,7 +353,7 @@ void Principal::RecuperarDepartamentos() {
     }
     else
     {
-        MessageDlg("Erro ao abrir o arquivo!", mtWarning, TMsgDlgButtons() << mbOK, 0);
+        QMessageBox::warning(0, "Erro", "Erro ao abrir arquivo");
     }
 }
 void Principal::RecuperarDisciplinas() {
@@ -384,7 +366,7 @@ void Principal::RecuperarDisciplinas() {
             if (pdep) {
                 Disciplina* pdisc = new Disciplina(id);
                 pdisc->setNome(nome);
-                pdep->incluaDisciplina(pdisc);
+                pdep->setDisciplina(pdisc);
                 LDisciplinas.incluaDisciplina(pdisc);
                 cont_idDisc++;
             }
@@ -393,7 +375,7 @@ void Principal::RecuperarDisciplinas() {
     }
     else
     {
-        MessageDlg("Erro ao abrir o arquivo!", mtWarning, TMsgDlgButtons() << mbOK, 0);
+        QMessageBox::warning(0, "Erro", "Erro ao abrir arquivo");
     }
 }
 void Principal::RecuperarAlunos() {
@@ -407,7 +389,7 @@ void Principal::RecuperarAlunos() {
                 Aluno* pal = new Aluno(id);
                 pal->setNome(nome);
                 pal->setRA(RA);
-                pdisc->incluaAluno(pal);
+                pdisc->setAluno(pal);
                 LAlunos.incluaAluno(pal);
                 cont_idAluno++;
             }
@@ -416,7 +398,6 @@ void Principal::RecuperarAlunos() {
     }
     else
     {
-        MessageDlg("Erro ao abrir o arquivo!", mtWarning, TMsgDlgButtons() << mbOK, 0);
+        QMessageBox::warning(0, "Erro", "Erro ao abrir arquivo");
     }
 }
-*/

@@ -27,7 +27,10 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionAlunos, &QAction::triggered, this, &MainWindow::ListarAlunos);
     connect(ui->actionTudo, &QAction::triggered, this, &MainWindow::ListarTudo);
 
-    connect(ui->listWidget, &QListWidget::itemClicked, this, &MainWindow::SegundaLista);
+        connect(ui->listWidget, &QListWidget::itemClicked, this, &MainWindow::SegundaLista);
+
+    connect(ui->actionSalvar, &QAction::triggered, this, &MainWindow::SalvarTudo);
+    connect(ui->actionRecuperar, &QAction::triggered, this, &MainWindow::RecuperarTudo);
 
     qApp->installEventFilter(this);
 
@@ -363,5 +366,14 @@ void MainWindow::SegundaLista(QListWidgetItem *item)
     }
 }
 
+void MainWindow::SalvarTudo()
+{
+    Sistema.GravarTudo();
+}
+
+void MainWindow::RecuperarTudo()
+{
+    Sistema.RecuperarTudo();
+}
 
 

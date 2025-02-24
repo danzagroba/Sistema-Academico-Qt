@@ -50,9 +50,8 @@ Departamento* Disciplina::getDepartamento ( )
 
 void Disciplina::setAluno ( Aluno* a )
 {
-	//ObjLAlunos.setInfo(a, a->getNome());
 	ObjLAlunos.push_back(a);
-	
+    a->setDisciplina(this);
 }
 
 void Disciplina::listeAlunos()

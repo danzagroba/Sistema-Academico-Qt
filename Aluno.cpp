@@ -36,6 +36,16 @@ int Aluno::getRA()
 	return RA;
 }
 
+void Aluno::setDisciplina(Disciplina* pd)
+{
+    pDiscAssociada = pd;
+}
+
+Disciplina* Aluno::getDisciplina()
+{
+    return pDiscAssociada;
+}
+
 void Aluno::setDepartamento ( Departamento* d )
 {
 	DeptoAssociado = d;

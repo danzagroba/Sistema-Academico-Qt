@@ -35,3 +35,8 @@ std::list<Universidade*>::iterator ListaUniversidades::getEnd()
 {
 	return LUniversidades.end();
 }
+
+bool ListaUniversidades::isEmpty()
+{
+    return LUniversidades.empty();
+}
