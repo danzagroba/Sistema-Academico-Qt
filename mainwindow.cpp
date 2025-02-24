@@ -184,6 +184,7 @@ void MainWindow::ListarUniversidades()
 {
     tipo = 5;
     ui->listWidget->clear();
+    ui->listWidget_2->clear();
     std::list<Universidade*>::iterator IteradorLUniversidades = Sistema.LUniversidades.getBegin();
     while (IteradorLUniversidades!= Sistema.LUniversidades.getEnd())
     {
@@ -207,6 +208,7 @@ void MainWindow::ListarDepartamentos()
 {
     tipo = 6;
     ui->listWidget->clear();
+    ui->listWidget_2->clear();
     std::list<Departamento*>::iterator IteradorLDepartamentos = Sistema.LDepartamentos.getBegin();
     while (IteradorLDepartamentos!= Sistema.LDepartamentos.getEnd())
     {
@@ -230,6 +232,7 @@ void MainWindow::ListarDisciplinas()
 {
     tipo = 7;
     ui->listWidget->clear();
+    ui->listWidget_2->clear();
     std::list<Disciplina*>::iterator IteradorLDisciplinas = Sistema.LDisciplinas.getBegin();
     while (IteradorLDisciplinas!= Sistema.LDisciplinas.getEnd())
     {
@@ -253,6 +256,7 @@ void MainWindow::ListarAlunos()
 {
     tipo = 8;
     ui->listWidget->clear();
+    ui->listWidget_2->clear();
     std::list<Aluno*>::iterator IteradorLAlunos = Sistema.LAlunos.getBegin();
     while (IteradorLAlunos!= Sistema.LAlunos.getEnd())
     {
