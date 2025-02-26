@@ -23,9 +23,9 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(SistemaAcademicoQt
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
-        main.cpp mainwindow.cpp Disciplina.cpp Principal.cpp Universidade.cpp Departamento.cpp Pessoa.cpp Estagiario.cpp Professor.cpp  stdafx.cpp Aluno.cpp
-        Estagiario.h Principal.h Departamento.h Disciplina.h stdafx.h Universidade.h Pessoa.h Professor.h Aluno.h
-        Estagiario.h Principal.h Departamento.h Disciplina.h stdafx.h Universidade.h Pessoa.h Professor.h Aluno.h
+        main.cpp mainwindow.cpp Disciplina.cpp Principal.cpp Universidade.cpp Departamento.cpp stdafx.cpp Aluno.cpp
+        Principal.h Departamento.h Disciplina.h stdafx.h Universidade.h Aluno.h
+        Principal.h Departamento.h Disciplina.h stdafx.h Universidade.h Aluno.h
         ListaAlunos.h
         ListaAlunos.cpp ListaAlunos.h ListaDepartamentos.cpp ListaDepartamentos.h ListaDisciplinas.cpp ListaDisciplinas.h ListaUniversidades.cpp ListaUniversidades.h
     )

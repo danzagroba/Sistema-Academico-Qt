@@ -2,21 +2,23 @@
 #define _ALUNO_H_
 
 #include "Departamento.h"
-#include "Pessoa.h"
 
-class Aluno : public Pessoa
-{ 
- private:
-    int				id;
-    int				RA;
+class Aluno
+{
+private:
+
+    int RA;
     Disciplina* pDiscAssociada;
-    Departamento*	DeptoAssociado;
+    int id;
+    string nome;
 
 public:
-    Aluno (int diaNa, int mesNa, int anoNa, string nome = "");
-    Aluno ( int i );
-	Aluno ( );
-    ~Aluno	( );
+
+    Aluno(int i);
+    ~Aluno();
+
+    void setNome(const char* n);
+    string getNome();
 
     void setRA(int ra);
     int getRA();
@@ -24,11 +26,8 @@ public:
     void setDisciplina(Disciplina* pd);
     Disciplina* getDisciplina();
 
-    void setDepartamento ( Departamento* d );
-    Departamento* getDepartamento ( );
-	
-	void setId(int i);
-	int getId();
+    void setId(int i);
+    int getId();
 };
 	
 

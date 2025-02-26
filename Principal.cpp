@@ -180,7 +180,7 @@ void Principal::CadAluno(const char* disci, const char* aluno, int ra)
                         pdisc->setAluno(pal);
                         LAlunos.incluaAluno(pal);
                         QMessageBox messageBox;
-                        messageBox.information(0,"Aluno","Disciplina cadastrado!");
+                        messageBox.information(0,"Sucesso","Aluno cadastrado!");
                         messageBox.setFixedSize(500,200);
                     }
                     else
@@ -232,7 +232,7 @@ void Principal::GravarTudo() {
     GravarDisciplinas();
     GravarAlunos();
     QMessageBox messageBox;
-    messageBox.information(0,"Sucesso", "Todo sistema acadêmico salvo!");
+    messageBox.information(0,"Sucesso", "Todo sistema academico salvo!");
     messageBox.setFixedSize(500,200);
 }
 void Principal::GravarUniversidades() {
