@@ -1,6 +1,6 @@
 // Prof. Dr. Jean M. Simao - DAINF/UTFPR Curitiba-Central
 // Sistema original por: Monitor Vitor C. M. Correa
-// Modificado e expandido por: Daniel I. Zagroba
+// Modificado e expandido por: Daniel I. Zagroba (26/02/2025)
 
 #include "Principal.h"
 #include <QMessageBox>
