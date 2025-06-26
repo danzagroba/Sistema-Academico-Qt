@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "Disciplina.h"
 
-Disciplina::Disciplina(int i, int na, string ac):
+Disciplina::Disciplina(int i, string ac):
 ObjLAlunos()
 { 
 	id = i;

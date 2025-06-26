@@ -8,7 +8,7 @@ class ListaUniversidades
 private:
     std::list<Universidade*> LUniversidades;
 public:
-	ListaUniversidades(int nd = 1000);
+    ListaUniversidades();
 	~ListaUniversidades();
 	void incluaUniversidade(Universidade* pdi);
 	Universidade* localizar(const char* univ);

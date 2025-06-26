@@ -9,7 +9,7 @@ class ListaDisciplinas
 private:
 	list<Disciplina*> LDisciplinas;
 public:
-	ListaDisciplinas(int nd = 1000);
+    ListaDisciplinas();
 	~ListaDisciplinas();
 	void incluaDisciplina(Disciplina* pdi);
 	Disciplina* localizar(const char* n);

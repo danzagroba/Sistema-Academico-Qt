@@ -2,8 +2,8 @@
 #include "Universidade.h"
 
 Universidade::Universidade(int idd):
-ObjLDepartamentos(),
-    id(idd)
+id(idd),
+ObjLDepartamentos()
 {
 }
 

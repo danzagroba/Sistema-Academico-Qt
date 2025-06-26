@@ -15,9 +15,9 @@ class Principal
 private:
     // Contadores para identificadores;
     int cont_idUniv;
+    int cont_idAluno;
     int cont_idDisc;
     int cont_idDepart;
-    int cont_idAluno;
 public:
     Principal();
     ~Principal();

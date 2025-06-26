@@ -1,6 +1,6 @@
 #include "ListaUniversidades.h"
 
-ListaUniversidades::ListaUniversidades(int nd)
+ListaUniversidades::ListaUniversidades()
 {
 }
 ListaUniversidades::~ListaUniversidades()

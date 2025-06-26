@@ -8,7 +8,7 @@ class ListaDepartamentos
 private:
 	std::list<Departamento*> LDepartamentos;
 public:
-	ListaDepartamentos(int nd = 1000);
+    ListaDepartamentos();
 	~ListaDepartamentos();
 	void incluaDepartamento(Departamento* pdi);
 	Departamento* localizar(const char* n);

@@ -19,7 +19,7 @@ private:
 	vector<Aluno*>::iterator Iterador;
 
   public:
-    Disciplina(int i, int na = 45, string ac = "");
+    Disciplina(int i, string ac = "");
     ~Disciplina();
 
     void setId(int i);

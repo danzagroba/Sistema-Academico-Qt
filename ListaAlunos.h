@@ -7,7 +7,7 @@ class ListaAlunos
 private:
     std::list<Aluno*> LAlunos;
 public:
-	ListaAlunos(int na = 45);
+    ListaAlunos();
 	~ListaAlunos();
 	void incluaAluno(Aluno* pa);
 	Aluno* localizar(int RA);

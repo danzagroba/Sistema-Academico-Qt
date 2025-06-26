@@ -1,6 +1,6 @@
 #include "ListaAlunos.h"
 
-ListaAlunos::ListaAlunos(int na)
+ListaAlunos::ListaAlunos()
 {
 
 }

@@ -1,6 +1,6 @@
 #include "ListaDepartamentos.h"
 
-ListaDepartamentos::ListaDepartamentos(int nd)
+ListaDepartamentos::ListaDepartamentos()
 {
 }
 ListaDepartamentos::~ListaDepartamentos(){}

@@ -1,6 +1,6 @@
 #include "ListaDisciplinas.h"
 
-ListaDisciplinas::ListaDisciplinas(int nd)
+ListaDisciplinas::ListaDisciplinas()
 {
 }
 ListaDisciplinas::~ListaDisciplinas()
